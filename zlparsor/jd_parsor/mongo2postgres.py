@@ -9,6 +9,10 @@ def content_clean(content):
     cleaned = content.replace(" ","").replace("\r\n"," ").replace("\r"," ").replace("\n"," ").lstrip(" ").rstrip(" ")
     return cleaned
 
+def content_clean_with_space_include(content):
+    cleaned = content.replace("\r\n"," ").replace("\r"," ").replace("\n"," ").lstrip(" ").rstrip(" ")
+    return cleaned
+
 
 def print_dict(input_dict):
     for key in iter(input_dict):
@@ -49,13 +53,13 @@ def get_basic(doc):
 def get_detail(doc):
     detail_info = dict()
     try:
-        requirement_text = doc.xpath("//div[@class='tab-cont-box']/div[@class='tab-inner-cont']")[0].text_content().replace(u'\xa0',u' ').replace(" ","")
+        requirement_text = doc.xpath("//div[@class='tab-cont-box']/div[@class='tab-inner-cont']")[0].text_content().replace(u'\xa0',u' ')
     except IndexError:
         print "Description format is different from template"
         return dict()
-    detail_info['requirement'] = content_clean(requirement_text)
-    narratage_text = doc.xpath("//div[@class='tab-cont-box']/div[@class='tab-inner-cont']")[1].text_content().replace(u'\xa0',u' ').replace(" ","")
-    detail_info['narratage'] = content_clean(narratage_text)
+    detail_info['requirement'] = content_clean_with_space_include(requirement_text)
+    narratage_text = doc.xpath("//div[@class='tab-cont-box']/div[@class='tab-inner-cont']")[1].text_content().replace(u'\xa0',u' ')
+    detail_info['narratage'] = content_clean_with_space_include(narratage_text)
     return detail_info
 
 
