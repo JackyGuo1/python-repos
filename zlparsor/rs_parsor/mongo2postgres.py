@@ -257,9 +257,6 @@ def test_exists(conn,resume_id):
     return False if row is None else True
 
 def main():
-    #parse_resume('./resumes/JM000656147R90250001000_1')
-    # parse_resume('./resumes/JM000017994R90250000000_1')
-    # parse_resume('./resumes/JM000105737R90250000000_1')
     
     rdb = ResumeDB()
     count = 0
@@ -288,23 +285,5 @@ def unicode_filter(s):
     return "".join([i for i in s if unicodedata.category(i) not in ["Co"]])
 
 
-def test():
-    resume_id = 'JM134501949R90250001000_1'
-    html_file = get_html('/'.join(['./resumes',resume_id]))
-
-    conn = get_connection('zdwechat.cloudapp.net','wechatuser','Server2013*?','ZhilianDataBase')
-
-    resume =  parse_resume(resume_id,html_file)
-
-#    print resume
-    dddd = make_description(resume)
-    print dddd,type(dddd)
-    # print "Description: \n %s" % dddd
-    print describe_unicode(dddd)
-    # return 
-
-    insert_record(conn,resume)    
-
 if __name__ == "__main__":
     main()
-#    test()
