@@ -1,0 +1,6 @@
+DATABASE = 'lgcompany'
+DEBUG = True
+SECRET_KEY = 'development key'
+USERNAME = 'lguser'
+PASSWORD = 'Server2008!'
+HOST='118.192.89.126'
