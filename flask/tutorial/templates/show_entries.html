@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block body %}
+<!--  {% if session.logged_in %}
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <dl>
+        <dt>Title:
+        <dd><input type=text size=30 name=title>
+        <dt>Text:
+        <dd><textarea name=text rows=5 cols=40></textarea>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+  {% endif %}
+-->
+<table>
+ <form action="{{url_for('model')}}" method=post>
+  {% for entry in entries %}
+    <tr>
+	<td><input type="checkbox" name="like" value={{entry.id}}></td>
+	<td>{{ entry.id }}</td>
+	<td>{{ entry.title|safe }}</td>
+	<td>{{ entry.educate|safe }}</td>
+	<td>{{ entry.salary|safe }}</td>
+	<td>{{ entry.site|safe }}</td>
+	<td>{{ entry.exp_year|safe }}</td>
+	<td>{{ entry.attract|safe }}</td>
+	<td>{{ entry.description|safe }}</td>
+    </tr>
+  {% else %}
+    <tr><td>Unbelievable.  No entries here so far</td></tr>
+  {% endfor %}
+	<input type=submit value=model>
+	 </form>
+ <form action="{{url_for('reset_model')}}">
+    <input type=submit value=reset_model>
+ </form>
+</table>
+<!--  <ul class=entries>
+  {% for entry in entries %}
+    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+  </ul>
+-->
+{% endblock %}
+
